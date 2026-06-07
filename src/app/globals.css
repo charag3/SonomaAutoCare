@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Sonoma County Auto Care — Design System (Tailwind v4 CSS-based config)
+   Prototype build — Santa Rosa, CA
+   Brand direction: trustworthy, warm, professional — NOT a cold corporate-chain
+   look. Deep automotive navy/charcoal for credibility + a warm amber/orange
+   accent (echoes Sonoma wine country warmth + "5-star" gold without being
+   literal yellow). White space reads clean and modern vs. competitors'
+   dated/minimal sites.
+   ============================================================ */
+
+@theme {
+  /* ===== Core brand palette ===== */
+  --color-shop-navy:        #1B2A3A;  /* primary — headers, footer, dark sections */
+  --color-shop-navy-dark:   #111C28;  /* deepest contrast (footer base) */
+  --color-shop-charcoal:    #2D3B4C;  /* secondary dark, card surfaces on navy */
+  --color-shop-amber:       #E8920A;  /* primary accent — CTAs, stars, highlights */
+  --color-shop-amber-dark:  #C77908;  /* hover state for accent */
+  --color-shop-cream:       #FAF7F2;  /* warm off-white background */
+  --color-shop-gray:        #F2F1ED;  /* section alternation / card backgrounds */
+
+  /* ===== Tipografía ===== */
+  /* next/font/google injects CSS variables on <html> */
+  --font-display: var(--font-poppins), 'Poppins', sans-serif;
+  --font-body:    var(--font-inter),   'Inter',   sans-serif;
+
+  /* ===== Border radius base ===== */
+  --radius-base: 0.5rem;
+
+  /* ===== Shadows ===== */
+  --shadow-card: 0 4px 6px -1px rgb(0 0 0 / 0.08), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+
+  /* ===== Transitions ===== */
+  --transition-base: all 250ms ease;
+}
+
+/* ============================================================
+   Base styles
+   ============================================================ */
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: #FAF7F2;
+  color: #1B2A3A;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
