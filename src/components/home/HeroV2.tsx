@@ -19,24 +19,10 @@ export default function HeroV2() {
             Santa Rosa, CA &middot; Independently Owned
           </span>
 
-          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-5xl leading-snug mb-5">
+          <h1 className="font-display font-bold text-4xl sm:text-5xl lg:text-5xl leading-snug mb-8">
             Santa Rosa&rsquo;s Highest-Rated Auto Repair Shop —{' '}
             <span className="text-[#c9a86a]">Honest Work, No Surprises</span>
           </h1>
-
-          <p className="text-white/75 text-lg md:text-xl max-w-xl mb-6 font-body">
-            Rated <strong className="text-white">4.9 stars across 187 verified Google &amp; Yelp reviews</strong> —
-            more than any other shop in town, including 30-year incumbents. That&rsquo;s not luck. That&rsquo;s what
-            happens when a shop tells you the truth about your car, every single time.
-          </p>
-
-          <div className="flex items-center gap-3 mb-8">
-            <StarRating rating={shopInfo.ratings.combined.score} size="md" />
-            <span className="font-display font-semibold text-lg">{shopInfo.ratings.combined.score}</span>
-            <span className="text-white/60 text-sm">
-              ({shopInfo.ratings.combined.count} combined verified reviews)
-            </span>
-          </div>
 
           <div className="flex flex-wrap gap-4">
             <Link
@@ -57,6 +43,7 @@ export default function HeroV2() {
         {/* Visual column */}
         <div className="relative">
           <div className="aspect-[4/3] rounded-2xl bg-gradient-to-br from-[#1f3d31] to-[#2d4a3d] border border-white/10 shadow-card flex items-center justify-center relative overflow-hidden">
+            <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-1/4 left-1/4 w-40 h-40 border-2 border-[#c9a86a] rounded-full" />
               <div className="absolute bottom-1/4 right-1/4 w-28 h-28 border-2 border-white rounded-full" />
