@@ -36,6 +36,16 @@ export default function Hero() {
           animation: 'zoomHero 25s ease-in-out infinite',
         }}
       />
+      {/* Dark overlay */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background: 'rgba(0,0,0,0.4)',
+          zIndex: 1,
+        }}
+      />
 
       <div
         className="hero-inner"
@@ -77,10 +87,10 @@ export default function Hero() {
           <h1
             style={{
               fontFamily: 'var(--font-poppins), Poppins, sans-serif',
-              fontSize: 'clamp(2.5rem, 5vw, 4rem)',
+              fontSize: 'clamp(1.875rem, 4vw, 3.25rem)',
               fontWeight: 700,
-              lineHeight: 1.2,
-              marginBottom: '1.5rem',
+              lineHeight: 1.15,
+              marginBottom: '2rem',
               letterSpacing: '-0.5px',
               animation: 'slideInLeft 0.8s ease-out',
             }}
@@ -96,65 +106,6 @@ export default function Hero() {
               Honest Work. No Surprises.
             </span>
           </h1>
-
-          {/* Subheading */}
-          <p
-            style={{
-              fontSize: '1.125rem',
-              lineHeight: 1.7,
-              opacity: 0.95,
-              marginBottom: '2rem',
-              maxWidth: '500px',
-              animation: 'fadeInUp 0.8s ease-out 0.4s both',
-            }}
-          >
-            4.9 stars across 187 verified reviews. We don&apos;t upsell. We tell you
-            what&apos;s actually wrong with your car — the truth, every time.
-          </p>
-
-          {/* Rating block */}
-          <div
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1.25rem',
-              margin: '2rem 0',
-              padding: '1.25rem',
-              background: 'rgba(232,116,74,0.15)',
-              borderLeft: '4px solid var(--orange)',
-              borderRadius: '0.5rem',
-              backdropFilter: 'blur(8px)',
-              animation: 'fadeInUp 0.8s ease-out 0.6s both',
-            }}
-          >
-            <div style={{ display: 'flex', gap: '0.25rem' }}>
-              {[0, 1, 2, 3, 4].map((i) => (
-                <span
-                  key={i}
-                  style={{
-                    color: 'var(--orange)',
-                    fontSize: '1.25rem',
-                    animation: 'popIn 0.6s ease-out both',
-                    animationDelay: `${0.6 + i * 0.05}s`,
-                  }}
-                >
-                  ★
-                </span>
-              ))}
-            </div>
-            <span
-              style={{
-                fontFamily: 'var(--font-poppins), Poppins, sans-serif',
-                fontWeight: 700,
-                fontSize: '1.5rem',
-              }}
-            >
-              4.9
-            </span>
-            <span style={{ fontSize: '0.875rem', opacity: 0.75, flex: 1 }}>
-              187 verified reviews
-            </span>
-          </div>
 
           {/* CTA buttons */}
           <div
