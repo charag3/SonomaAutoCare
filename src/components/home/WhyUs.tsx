@@ -1,3 +1,5 @@
+'use client'
+
 // WhyUs — V3 "A Reputation Built on Honesty"
 // White background, 3 pillar cards with orange top border
 // Hover: lift + top border turns teal

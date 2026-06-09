@@ -1,3 +1,5 @@
+'use client'
+
 // FinalCTA — V3 orange gradient banner
 // linear-gradient(135deg, orange → orange-dark) with radial overlay
 // White "Book Now" button linking to Calendly

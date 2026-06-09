@@ -1,3 +1,5 @@
+'use client'
+
 // ServiceAreaCallout — V3 teal gradient service area section
 // 2-col grid: left = intro + area list with pulsing dots; right = map visual box
 

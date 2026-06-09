@@ -1,3 +1,5 @@
+'use client'
+
 // Home hero — V3 Fisher-inspired full-bleed hero
 // Full-viewport height with background photo + teal/orange gradient overlay
 // Zoom animation on background, entry animations on copy elements

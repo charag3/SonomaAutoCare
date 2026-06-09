@@ -1,3 +1,5 @@
+'use client'
+
 // ServicesOverview — V3 services section
 // Dark teal background, 4-column grid, featured card spans 2 cols
 // Floating orb pseudo-element via inline div (no CSS pseudo in React inline styles)

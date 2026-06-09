@@ -1,3 +1,5 @@
+'use client'
+
 // TrustBar — V3 "Why Drivers Keep Coming Back" reviews section
 // White background with orange top border
 // 3 review cards with hover lift + orange top bar reveal
