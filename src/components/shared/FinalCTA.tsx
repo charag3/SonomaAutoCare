@@ -1,8 +1,6 @@
-// Reusable final CTA banner — used at the bottom of Home (and reusable on
-// other pages if needed). IA spec for Home: "Book your appointment in under
-// 2 minutes" → Schedule an Appointment
-
-import Link from 'next/link'
+// FinalCTA — V3 orange gradient banner
+// linear-gradient(135deg, orange → orange-dark) with radial overlay
+// White "Book Now" button linking to Calendly
 
 type FinalCTAProps = {
   heading?: string
@@ -12,26 +10,92 @@ type FinalCTAProps = {
 }
 
 export default function FinalCTA({
-  heading = 'Book Your Appointment in Under 2 Minutes',
-  subheading = "Join the hundreds of Santa Rosa drivers who've made us the highest-rated shop in town.",
-  ctaLabel = 'Schedule an Appointment',
-  ctaHref = '/schedule-an-appointment',
+  heading = 'Schedule Your Appointment Today',
+  subheading = 'Join the hundreds of Santa Rosa drivers who trust us to tell the truth.',
+  ctaLabel = 'Book Now',
+  ctaHref = 'https://calendly.com/sonomaautocare/appointment',
 }: FinalCTAProps) {
+  const isExternal = ctaHref.startsWith('http')
+
   return (
-    <section className="bg-shop-amber py-16 px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="font-display font-bold text-3xl md:text-4xl text-shop-navy-dark mb-3">
+    <section
+      id="contact"
+      style={{
+        background: 'linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%)',
+        padding: '3.5rem 1.5rem',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Radial overlays */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          background:
+            'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.1) 0%, transparent 50%), radial-gradient(circle at 80% 80%, rgba(26,61,79,0.08) 0%, transparent 50%)',
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      />
+
+      <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+        <h2
+          style={{
+            fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+            fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+            fontWeight: 700,
+            color: 'white',
+            marginBottom: '0.75rem',
+            letterSpacing: '-0.5px',
+          }}
+        >
           {heading}
         </h2>
-        <p className="text-shop-navy-dark/75 text-lg mb-8 max-w-xl mx-auto">
+        <p
+          style={{
+            fontSize: '1.125rem',
+            color: 'rgba(255,255,255,0.95)',
+            marginBottom: '2rem',
+            maxWidth: '500px',
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            lineHeight: 1.6,
+          }}
+        >
           {subheading}
         </p>
-        <Link
+        <a
           href={ctaHref}
-          className="inline-block bg-shop-navy hover:bg-shop-navy-dark text-white font-display font-semibold px-8 py-4 rounded-base transition-colors duration-200"
+          {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+          style={{
+            display: 'inline-block',
+            padding: '1rem 2.5rem',
+            borderRadius: '0.75rem',
+            fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+            fontWeight: 700,
+            fontSize: '1rem',
+            textDecoration: 'none',
+            background: 'white',
+            color: 'var(--orange)',
+            boxShadow: '0 8px 24px rgba(0,0,0,0.2)',
+            transition: 'all 0.3s cubic-bezier(0.34,1.56,0.64,1)',
+          }}
+          onMouseEnter={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement
+            el.style.transform = 'translateY(-3px)'
+            el.style.boxShadow = '0 12px 36px rgba(0,0,0,0.3)'
+          }}
+          onMouseLeave={(e) => {
+            const el = e.currentTarget as HTMLAnchorElement
+            el.style.transform = ''
+            el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.2)'
+          }}
         >
           {ctaLabel}
-        </Link>
+        </a>
       </div>
     </section>
   )

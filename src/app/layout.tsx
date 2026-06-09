@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en-US" className={`${poppins.variable} ${inter.variable}`}>
-      <body className="antialiased font-body bg-shop-cream text-shop-navy">
+      <body className="antialiased font-body bg-shop-cream text-shop-teal">
         <Nav />
         <main>{children}</main>
         <Footer />

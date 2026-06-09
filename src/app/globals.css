@@ -1,31 +1,35 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Sonoma County Auto Care — Design System (Tailwind v4 CSS-based config)
-   Prototype build — Santa Rosa, CA
-   Brand direction: trustworthy, warm, professional — NOT a cold corporate-chain
-   look. Deep automotive navy/charcoal for credibility + a warm amber/orange
-   accent (echoes Sonoma wine country warmth + "5-star" gold without being
-   literal yellow). White space reads clean and modern vs. competitors'
-   dated/minimal sites.
+   Sonoma County Auto Care — Design System V3 (Tailwind v4 CSS-based config)
+   Fisher-inspired: teal + orange, full-bleed hero, frost nav
    ============================================================ */
 
 @theme {
-  /* ===== Core brand palette ===== */
-  --color-shop-navy:        #1B2A3A;  /* primary — headers, footer, dark sections */
-  --color-shop-navy-dark:   #111C28;  /* deepest contrast (footer base) */
-  --color-shop-charcoal:    #2D3B4C;  /* secondary dark, card surfaces on navy */
-  --color-shop-amber:       #E8920A;  /* primary accent — CTAs, stars, highlights */
-  --color-shop-amber-dark:  #C77908;  /* hover state for accent */
-  --color-shop-cream:       #FAF7F2;  /* warm off-white background */
-  --color-shop-gray:        #F2F1ED;  /* section alternation / card backgrounds */
+  /* ===== V3 brand palette — teal + orange ===== */
+  --color-shop-teal:        #1a3d4f;  /* primary dark — headers, footer, dark sections */
+  --color-shop-teal-light:  #2a5a6f;  /* lighter teal for gradients */
+  --color-shop-teal-dark:   #0f2a37;  /* deepest teal (footer base) */
+  --color-shop-orange:      #e8744a;  /* primary accent — CTAs, stars, highlights */
+  --color-shop-orange-dark: #d65a30;  /* hover state for accent */
+  --color-shop-orange-light:#f0885d;  /* lighter orange for dark-bg text */
+  --color-shop-cream:       #fafaf8;  /* warm off-white background */
+  --color-shop-gray-light:  #f5f4f1;  /* light gray background */
+  --color-shop-gray:        #e8e5dd;  /* borders, card backgrounds */
+  --color-shop-gray-dark:   #2D3B4C;  /* body text on light sections */
 
-  /* ===== Tipografía ===== */
-  /* next/font/google injects CSS variables on <html> */
+  /* Legacy aliases kept so V2 components (HeroV2, etc.) don't break */
+  --color-shop-navy:        #1a3d4f;
+  --color-shop-navy-dark:   #0f2a37;
+  --color-shop-charcoal:    #2D3B4C;
+  --color-shop-amber:       #e8744a;
+  --color-shop-amber-dark:  #d65a30;
+
+  /* ===== Typography ===== */
   --font-display: var(--font-poppins), 'Poppins', sans-serif;
   --font-body:    var(--font-inter),   'Inter',   sans-serif;
 
-  /* ===== Border radius base ===== */
+  /* ===== Border radius ===== */
   --radius-base: 0.5rem;
 
   /* ===== Shadows ===== */
@@ -36,16 +40,94 @@
 }
 
 /* ============================================================
-   Base styles
+   Design-system CSS custom props (used by components as var())
    ============================================================ */
 
 :root {
   color-scheme: light;
+
+  --teal:         #1a3d4f;
+  --teal-light:   #2a5a6f;
+  --teal-dark:    #0f2a37;
+  --orange:       #e8744a;
+  --orange-dark:  #d65a30;
+  --orange-light: #f0885d;
+  --cream:        #fafaf8;
+  --gray-light:   #f5f4f1;
+  --gray:         #e8e5dd;
+  --gray-dark:    #2D3B4C;
+
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+  --shadow-lg: 0 12px 32px rgba(0,0,0,0.12);
+  --shadow-xl: 0 20px 60px rgba(0,0,0,0.25);
 }
 
+/* ============================================================
+   Base styles
+   ============================================================ */
+
 body {
-  background: #FAF7F2;
-  color: #1B2A3A;
+  background: #fafaf8;
+  color: #1a3d4f;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   Keyframe animations (shared across Hero + other sections)
+   ============================================================ */
+
+@keyframes zoomHero {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.05); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.4); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(30px); }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.5; }
+}
+
+/* ============================================================
+   Accessibility
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

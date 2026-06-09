@@ -1,47 +1,145 @@
-// Home "Why Sonoma County Auto Care" section — IA spec: 3-point trust pillars
-// (honest diagnostics, fair pricing, local team), link to /about
+// WhyUs — V3 "A Reputation Built on Honesty"
+// White background, 3 pillar cards with orange top border
+// Hover: lift + top border turns teal
 
-import Link from 'next/link'
-import { trustPillars, team } from '@/lib/data/shop'
+const pillars = [
+  {
+    title: 'Honest Diagnostics',
+    description:
+      "We tell you what's actually wrong with your car. No upsells. No surprises. Just the truth about your vehicle.",
+  },
+  {
+    title: 'Fair Pricing',
+    description:
+      'You get transparent pricing before any work starts. No hidden fees. No shock bills. Ever.',
+  },
+  {
+    title: '20+ Years Local',
+    description:
+      "We know Sonoma County and your car inside and out. That expertise is worth something.",
+  },
+]
 
 export default function WhyUs() {
   return (
-    <section className="bg-shop-navy text-white py-20 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="max-w-2xl mb-12">
-          <span className="text-xs font-display uppercase tracking-widest text-shop-amber block mb-3">
-            Why Drivers Choose Us — And Stay
+    <section
+      id="why-us"
+      style={{
+        background: 'white',
+        padding: '4rem 1.5rem',
+      }}
+    >
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+        {/* Section header */}
+        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <span
+            style={{
+              fontSize: '0.75rem',
+              fontWeight: 700,
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              color: 'var(--orange)',
+              display: 'inline-block',
+              padding: '0.5rem 1rem',
+              background: 'rgba(232,116,74,0.1)',
+              borderRadius: '0.5rem',
+              marginBottom: '0.75rem',
+            }}
+          >
+            Our Difference
           </span>
-          <h2 className="font-display font-bold text-3xl md:text-4xl mb-4">
-            A Reputation Built One Honest Conversation at a Time
+          <h2
+            style={{
+              fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+              fontSize: 'clamp(1.75rem, 4vw, 2.5rem)',
+              fontWeight: 700,
+              marginBottom: '0.75rem',
+              color: 'var(--teal)',
+              letterSpacing: '-0.5px',
+            }}
+          >
+            A Reputation Built on Honesty
           </h2>
-          <p className="text-white/65">
-            We didn&rsquo;t buy a 4.9-star rating with promotions. We earned it the slow way —
-            by telling {team[0].name} and {team[1].name}&rsquo;s customers the truth, every time, even
-            when the easy answer would&rsquo;ve made us more money.
+          <p
+            style={{
+              fontSize: '1rem',
+              color: 'var(--gray-dark)',
+              opacity: 0.8,
+              maxWidth: '600px',
+              margin: '0 auto',
+            }}
+          >
+            We didn&apos;t buy a 4.9-star rating. We earned it by telling customers the truth,
+            every time.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {trustPillars.map((pillar) => (
-            <div key={pillar.title} className="bg-white/5 border border-white/10 rounded-xl p-6">
-              <h3 className="font-display font-semibold text-lg text-shop-amber mb-2">
-                {pillar.title}
-              </h3>
-              <p className="text-sm text-white/70 leading-relaxed">{pillar.description}</p>
-            </div>
+        {/* Pillar cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '2rem',
+          }}
+        >
+          {pillars.map((pillar) => (
+            <PillarCard key={pillar.title} {...pillar} />
           ))}
-        </div>
-
-        <div className="mt-10">
-          <Link
-            href="/about"
-            className="inline-block font-display font-semibold text-shop-amber hover:text-white transition-colors duration-200 text-sm uppercase tracking-wide"
-          >
-            Meet {team[0].name} &amp; {team[1].name} →
-          </Link>
         </div>
       </div>
     </section>
+  )
+}
+
+function PillarCard({ title, description }: { title: string; description: string }) {
+  return (
+    <div
+      style={{
+        background: 'var(--cream)',
+        padding: '2rem',
+        borderRadius: '1rem',
+        border: '1px solid var(--gray)',
+        borderTop: '4px solid var(--orange)',
+        position: 'relative',
+        transition: 'all 0.3s',
+        boxShadow: 'var(--shadow-sm)',
+      }}
+      onMouseEnter={(e) => {
+        const el = e.currentTarget as HTMLDivElement
+        el.style.transform = 'translateY(-8px)'
+        el.style.boxShadow = 'var(--shadow-md)'
+        el.style.borderTopColor = 'var(--teal)'
+        el.style.background = 'white'
+      }}
+      onMouseLeave={(e) => {
+        const el = e.currentTarget as HTMLDivElement
+        el.style.transform = ''
+        el.style.boxShadow = 'var(--shadow-sm)'
+        el.style.borderTopColor = 'var(--orange)'
+        el.style.background = 'var(--cream)'
+      }}
+    >
+      <h3
+        style={{
+          fontFamily: 'var(--font-poppins), Poppins, sans-serif',
+          fontSize: '1.25rem',
+          fontWeight: 700,
+          color: 'var(--teal)',
+          marginBottom: '0.75rem',
+        }}
+      >
+        {title}
+      </h3>
+      <p
+        style={{
+          fontSize: '0.95rem',
+          color: 'var(--gray-dark)',
+          opacity: 0.85,
+          lineHeight: 1.7,
+        }}
+      >
+        {description}
+      </p>
+    </div>
   )
 }
