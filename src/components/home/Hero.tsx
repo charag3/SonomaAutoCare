@@ -36,6 +36,7 @@ export default function Hero() {
       />
 
       <div
+        className="hero-inner"
         style={{
           position: 'relative',
           zIndex: 2,
@@ -43,10 +44,6 @@ export default function Hero() {
           margin: '0 auto',
           padding: '3rem 1.5rem',
           width: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: '3rem',
           minHeight: '100%',
         }}
       >
@@ -213,19 +210,16 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Social proof card — absolute, bottom-right, Fisher-style */}
+      {/* Social proof card — absolute bottom-right on desktop, static on mobile */}
       <div
+        className="hero-social-proof-card"
         style={{
-          position: 'absolute',
-          bottom: '2rem',
-          right: '2rem',
           background: 'rgba(255,255,255,0.95)',
           borderRadius: '1rem',
           padding: '1.5rem',
           boxShadow: '0 20px 60px rgba(0,0,0,0.25)',
           zIndex: 3,
           animation: 'slideUp 0.8s ease-out 0.4s both',
-          maxWidth: '280px',
         }}
       >
         {/* Avatar stack */}

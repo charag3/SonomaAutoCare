@@ -43,14 +43,7 @@ export default function ServiceAreaCallout() {
       />
 
       <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: '3rem',
-            alignItems: 'center',
-          }}
-        >
+        <div className="area-v3-grid">
           {/* Left: intro + area list */}
           <div>
             <span

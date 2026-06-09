@@ -1,10 +1,5 @@
 'use client'
 
-// Frost pill navbar — V3 Fisher-inspired
-// Position: absolute over the hero (transparent, overlays the full-bleed image)
-// Center: pill container with sliding highlight pill on hover
-// Right: orange CTA button linking to Calendly
-
 import { useState, useRef } from 'react'
 import Link from 'next/link'
 
@@ -22,16 +17,13 @@ export default function Nav() {
     width: 0,
     opacity: 0,
   })
+  const [menuOpen, setMenuOpen] = useState(false)
 
   function handleItemEnter(e: React.MouseEvent<HTMLLIElement>) {
     if (!listRef.current) return
     const itemRect = e.currentTarget.getBoundingClientRect()
     const listRect = listRef.current.getBoundingClientRect()
-    setPill({
-      left: itemRect.left - listRect.left,
-      width: itemRect.width,
-      opacity: 1,
-    })
+    setPill({ left: itemRect.left - listRect.left, width: itemRect.width, opacity: 1 })
   }
 
   function handleListLeave() {
@@ -76,10 +68,8 @@ export default function Nav() {
           Sonoma County Auto Care
         </Link>
 
-        {/* Pill nav */}
-        <nav
-          style={{ flex: 1, margin: '0 2rem', display: 'flex', justifyContent: 'center' }}
-        >
+        {/* Pill nav — hidden on mobile via CSS class */}
+        <nav className="frost-nav-wrapper">
           <ul
             ref={listRef}
             onMouseLeave={handleListLeave}
@@ -94,7 +84,6 @@ export default function Nav() {
               background: 'rgba(255,255,255,0.07)',
             }}
           >
-            {/* Sliding pill */}
             <span
               aria-hidden="true"
               style={{
@@ -113,7 +102,6 @@ export default function Nav() {
                 zIndex: 1,
               }}
             />
-
             {links.map((link) => (
               <li
                 key={link.href}
@@ -138,8 +126,7 @@ export default function Nav() {
                     ;(e.currentTarget as HTMLAnchorElement).style.color = '#ffffff'
                   }}
                   onMouseLeave={(e) => {
-                    ;(e.currentTarget as HTMLAnchorElement).style.color =
-                      'rgba(255,255,255,0.8)'
+                    ;(e.currentTarget as HTMLAnchorElement).style.color = 'rgba(255,255,255,0.8)'
                   }}
                 >
                   {link.label}
@@ -149,11 +136,12 @@ export default function Nav() {
           </ul>
         </nav>
 
-        {/* CTA button */}
+        {/* CTA button — hidden on very small screens */}
         <a
           href="https://calendly.com/sonomaautocare/appointment"
           target="_blank"
           rel="noopener noreferrer"
+          className="nav-cta"
           style={{
             background: 'rgba(232,116,74,0.92)',
             color: 'white',
@@ -164,7 +152,6 @@ export default function Nav() {
             fontSize: '0.8125rem',
             letterSpacing: '0.02em',
             boxShadow: '0 4px 14px rgba(232,116,74,0.35)',
-            display: 'inline-flex',
             alignItems: 'center',
             whiteSpace: 'nowrap',
             border: '1px solid rgba(255,255,255,0.15)',
@@ -185,7 +172,43 @@ export default function Nav() {
         >
           Request <span style={{ marginLeft: '0.5rem' }}>→</span>
         </a>
+
+        {/* Hamburger — visible on mobile only */}
+        <button
+          className="nav-hamburger"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          onClick={() => setMenuOpen((o) => !o)}
+        >
+          {menuOpen ? (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          ) : (
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 12h18M3 6h18M3 18h18" />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {menuOpen && (
+        <nav className="nav-mobile-menu" onClick={() => setMenuOpen(false)}>
+          {links.map((link) => (
+            <Link key={link.href} href={link.href}>
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href="https://calendly.com/sonomaautocare/appointment"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ color: 'var(--orange-light)', fontWeight: 600, borderBottom: 'none' }}
+          >
+            Request Appointment →
+          </a>
+        </nav>
+      )}
     </header>
   )
 }

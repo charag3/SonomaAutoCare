@@ -134,15 +134,8 @@ export default function ServicesOverview() {
           </p>
         </div>
 
-        {/* Services grid */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
-            gap: '1.5rem',
-            marginBottom: '2rem',
-          }}
-        >
+        {/* Services grid — responsive via CSS class */}
+        <div className="services-v3-grid">
           {servicesData.map((service) => (
             <ServiceCard key={service.title} {...service} />
           ))}
@@ -192,8 +185,8 @@ function ServiceCard({
   if (featured) {
     return (
       <div
+        className="service-card-featured"
         style={{
-          gridColumn: 'span 2',
           padding: '2.5rem',
           borderRadius: '1rem',
           background: 'linear-gradient(135deg, var(--orange), var(--orange-dark))',
