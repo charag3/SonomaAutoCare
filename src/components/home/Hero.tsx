@@ -7,9 +7,26 @@
 
 import Link from 'next/link'
 
+const heroStyles = `
+  .hero-social-proof-card {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .hero-social-proof-card {
+      display: block !important;
+      position: absolute !important;
+      bottom: 2rem;
+      right: 2rem;
+      width: 280px;
+    }
+  }
+`
+
 export default function Hero() {
   return (
-    <section
+    <>
+      <style>{heroStyles}</style>
+      <section
       style={{
         position: 'relative',
         overflow: 'hidden',
@@ -163,7 +180,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Social proof card — absolute bottom-right on desktop, static on mobile */}
+      {/* Social proof card — hidden on mobile, shown on desktop */}
       <div
         className="hero-social-proof-card"
         style={{
@@ -230,5 +247,6 @@ export default function Hero() {
         </div>
       </div>
     </section>
+    </>
   )
 }
